@@ -1,35 +1,31 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import logo from './logo.svg';
+import {Routes, Route, Link} from 'react-router-dom';
 import './App.css';
 import { CardList } from './components/card-list/card-list.component';
-import { SearchBox} from './components/search-box/search-box.component';
 
+import { useLocation } from 'react-router-dom';
+import Character from './components/character/character.component';
 
 const App = () =>{
-  const [searchField, setSearchField] = useState('');
+  const location = useLocation();
   const [monsters, setMonsters] = useState([]);
 
   useEffect(()=>{
-    fetch(`https://jsonplaceholder.typicode.com/users`)
+    fetch(`https://rickandmortyapi.com/api/character`)
      .then(res=>res.json())
-     .then(users=>setMonsters(users))
+     .then(users=>setMonsters(users.results))
   },[])
-
-  const onSearchChange = (event) =>{
-    const searchFieldString = event.target.value.toLocaleLowerCase();
-    setSearchField(searchFieldString);
-  }
-
-  const filteredMonsters = monsters.filter((monster)=>{
-    return monster.name.toLocaleLowerCase().includes(searchField);
-  });
 
   return(
     <div className="App">
-      <h1 className='app-title'>Monsters Rolodex</h1>
-      <SearchBox onChangeHandler={onSearchChange}/>
-      <CardList monsters={filteredMonsters} />
+      <Link to='/' className='app-title'>Rick and Morty</Link>
+
+      <Routes location={location} key={location.pathname}>
+        <Route  path='/' element={<CardList monsters={monsters} />}>
+        </Route>
+        <Route path='/character/:id' element={ <Character /> } >  </Route>  
+      </Routes>
     </div>
   )
 }
