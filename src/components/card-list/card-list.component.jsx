@@ -9,7 +9,7 @@ export const CardList = ({monsters}) => {
     return <div className="card-list">
         <ComboBox />
         {monsters.map(monster=>(
-            <Link to={`/character/${monster.id}`}><Card key={monster.id} monster={monster} /></Link>
+            <Link className="link" to={`/character/${monster.id}`}><Card key={monster.id} monster={monster} /></Link>
             
         ))}
     </div>

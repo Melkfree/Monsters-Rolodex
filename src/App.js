@@ -19,7 +19,7 @@ const App = () =>{
 
   return(
     <div className="App">
-      <Link to='/' className='app-title'>Rick and Morty</Link>
+      <Link to='/' className='app-title link'>Rick and Morty</Link>
 
       <Routes location={location} key={location.pathname}>
         <Route  path='/' element={<CardList monsters={monsters} />}>

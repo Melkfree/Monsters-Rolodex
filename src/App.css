@@ -21,3 +21,7 @@ body {
   color: #0ccac4;
   font-family: 'Bigelow Rules', cursive;
 }
+
+.link{
+  text-decoration: none;
+}

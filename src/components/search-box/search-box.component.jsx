@@ -22,7 +22,7 @@ export default function ComboBox() {
       getOptionLabel={ (option) =>  option.name}
       sx={{ width: 300 }}
       onChange={ (e, obj) => { console.log(obj)} }
-      renderOption={(e, obj) =>{return <Link to={`/character/${obj.id}`}><li>{obj.name}</li></Link> }}
+      renderOption={(e, obj) =>{return <Link className="link" to={`/character/${obj.id}`}><li>{obj.name}</li></Link> }}
       renderInput={(params, obj) => <TextField {...params} label="Search character" />}
     />
   );
